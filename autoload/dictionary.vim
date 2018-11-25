@@ -20,7 +20,7 @@ let s:opt = get(g:, 'dictionary_compile_option', s:optdefault)
 try
   if !executable(s:exe) || getftime(s:exe) < getftime(s:mfile)
     if executable(s:gcc)
-      call vimproc#system(printf('%s -o %s %s %s &', s:gcc, s:exe, s:opt, s:mfile))
+      call vimproc#system(printf('%s -o %s %s %s', s:gcc, s:exe, s:opt, s:mfile))
     endif
   endif
 catch
@@ -366,7 +366,7 @@ function! s:check_exe() abort
         call mkdir(expand(s:exepath), 'p')
       endif
       if executable(s:gcc)
-        call vimproc#system(printf('%s -o %s %s %s &', s:gcc, s:exe, s:opt, s:mfile))
+        call vimproc#system(printf('%s -o %s %s %s', s:gcc, s:exe, s:opt, s:mfile))
       endif
     catch
     endtry
